@@ -42,13 +42,13 @@ difficult to manage in production systems.
     The RSB by default will install (copy) the executables to a directory tree
     under the *prefix* you supply. To use the tools once finished just set your
     path to the ``bin`` directory under the *prefix* you use. In the examples
-    that follow the *prefix* is ``$HOME/development/rtems/4.11`` and is set
+    that follow the *prefix* is ``$HOME/development/rtems/4.12`` and is set
     using the ``--prefix`` option so the path you need to configure to build
     applications can be set with the following in a BASH shell:
 
     .. code-block:: shell
 
-      $ export PATH=$HOME/development/rtems/4.11/bin:$PATH
+      $ export PATH=$HOME/development/rtems/4.12/bin:$PATH
 
     Make sure you place the RTEMS tool path at the front of your path so they
     are searched first. RTEMS can provide newer versions of some tools your
@@ -74,15 +74,15 @@ Setup
 Setup a development work space::
 
     $ cd
-    $ mkdir -p development/rtems/src
-    $ cd development/rtems/src
+    $ mkdir -p development/rtems
+    $ cd development/rtems
 
 The RTEMS Source Builder is distributed as source. It is Python code so all you
 need to do is download the release's RSB tarball or clone the code directly
 from the RTEMS GIT repository::
 
-    $ git clone git://git.rtems.org/rtems-source-builder.git
-    $ cd rtems-source-builder
+    $ git clone git://git.rtems.org/rtems-source-builder.git rsb
+    $ cd rsb
 
 .. topic:: Workspaces
 
@@ -118,7 +118,7 @@ given a list of warnings about executable files not in the expected location
 however the executable was located somewhere in your environment's path. You
 will need to check each tool to determine if this is an issue. An executable
 not in the standard location may indicate it is not the host operating system's
-standard tool. It maybe ok or it could be buggy, only you can determine this.
+standard tool. It may be ok or it could be buggy, only you can determine this.
 
 The :ref:`Hosts` section lists packages you should install for common host
 operating systems. It maybe worth checking if you have those installed.
@@ -208,30 +208,30 @@ Building
 The quick start builds a SPARC tool set::
 
     $ ../source-builder/sb-set-builder --log=l-sparc.txt \   <1>
-          --prefix=$HOME/development/rtems/4.11 \       <2>
-          4.11/rtems-sparc           <3>
-    Source Builder - Set Builder, v0.2.0
-    Build Set: 4.11/rtems-sparc
+          --prefix=$HOME/development/rtems/4.12 \       <2>
+          4.12/rtems-sparc           <3>
+    RTEMS Source Builder - Set Builder, 4.12
+    Build Set: 4.12/rtems-sparc
     config: expat-2.1.0-1.cfg        <4>
     package: expat-2.1.0-x86_64-freebsd9.1-1
     building: expat-2.1.0-x86_64-freebsd9.1-1
-    config: tools/rtems-binutils-2.22-1.cfg        <5>
-    package: sparc-rtems4.11-binutils-2.22-1
-    building: sparc-rtems4.11-binutils-2.22-1
-    config: tools/rtems-gcc-4.7.2-newlib-1.20.0-1.cfg   <6>
-    package: sparc-rtems4.11-gcc-4.7.2-newlib-1.20.0-1
-    building: sparc-rtems4.11-gcc-4.7.2-newlib-1.20.0-1
-    config: tools/rtems-gdb-7.5.1-1.cfg      <7>
-    package: sparc-rtems4.11-gdb-7.5.1-1
-    building: sparc-rtems4.11-gdb-7.5.1-1
-    installing: rtems-4.11-sparc-rtems4.11-1 -> /home/chris/development/rtems/4.11 <8>
-    installing: rtems-4.11-sparc-rtems4.11-1 -> /home/chris/development/rtems/4.11
-    installing: rtems-4.11-sparc-rtems4.11-1 -> /home/chris/development/rtems/4.11
-    installing: rtems-4.11-sparc-rtems4.11-1 -> /home/chris/development/rtems/4.11
+    config: tools/rtems-binutils-2.28-1.cfg        <5>
+    package: sparc-rtems4.12-binutils-2.28-1
+    building: sparc-rtems4.12-binutils-2.28-1
+    config: tools/rtems-gcc-7.1.0-newlib-2.5.0-1.cfg   <6>
+    package: sparc-rtems4.12-gcc-7.1.0-newlib-2.5.0-1
+    building: sparc-rtems4.12-gcc-7.1.0-newlib-2.5.0-1
+    config: tools/rtems-gdb-7.12.1-1.cfg      <7>
+    package: sparc-rtems4.12-gdb-7.12.1-1
+    building: sparc-rtems4.12-gdb-7.12.1-1
+    installing: rtems-4.12-sparc-rtems4.12-1 -> $HOME/development/rtems/4.12 <8>
+    installing: rtems-4.12-sparc-rtems4.12-1 -> $HOME/development/rtems/4.12
+    installing: rtems-4.12-sparc-rtems4.12-1 -> $HOME/development/rtems/4.12
+    installing: rtems-4.12-sparc-rtems4.12-1 -> $HOME/development/rtems/4.12
     cleaning: expat-2.1.0-x86_64-freebsd9.1-1     <9>
-    cleaning: sparc-rtems4.11-binutils-2.22-1
-    cleaning: sparc-rtems4.11-gcc-4.7.2-newlib-1.20.0-1
-    cleaning: sparc-rtems4.11-gdb-7.5.1-1
+    cleaning: sparc-rtems4.12-binutils-2.28-1
+    cleaning: sparc-rtems4.12-gcc-7.1.0-newlib-2.5.0-1
+    cleaning: sparc-rtems4.12-gdb-7.12.1-1
     Build Set: Time 0:13:43.616383        <10>
 
 .. topic:: Items
@@ -267,9 +267,9 @@ The quick start builds a SPARC tool set::
   10. The time to build the package. This lets you see how different host
       hardware or configurations perform.
 
-Your SPARC RTEMS 4.11 tool set will be installed and ready to build RTEMS and
+Your SPARC RTEMS 4.12 tool set will be installed and ready to build RTEMS and
 RTEMS applications. When the build runs you will notice the tool fetch the
-source code from the internet. These files are cached in directies called
+source code from the internet. These files are cached in directories called
 ``source`` and ``patches``. If you run the build again the cached files are
 used. This is what happened in the shown example. Archiving these directories
 archives the source you need to recreate the build.
@@ -287,49 +287,49 @@ archives the source you need to recreate the build.
 
 The installed tools::
 
-    $ ls $HOME/development/rtems/4.11
-    bin         include     lib         libexec     share       sparc-rtems4.11
-    $ ls $HOME/development/rtems/4.11/bin
-    sparc-rtems4.11-addr2line       sparc-rtems4.11-cpp
-    sparc-rtems4.11-gcc-ar          sparc-rtems4.11-gprof
-    sparc-rtems4.11-objdump         sparc-rtems4.11-size
-    sparc-rtems4.11-ar              sparc-rtems4.11-elfedit
-    sparc-rtems4.11-gcc-nm          sparc-rtems4.11-ld
-    sparc-rtems4.11-ranlib          sparc-rtems4.11-strings
-    sparc-rtems4.11-as              sparc-rtems4.11-g++
-    sparc-rtems4.11-gcc-ranlib      sparc-rtems4.11-ld.bfd
-    sparc-rtems4.11-readelf         sparc-rtems4.11-strip
-    sparc-rtems4.11-c++             sparc-rtems4.11-gcc
-    sparc-rtems4.11-gcov            sparc-rtems4.11-nm
-    sparc-rtems4.11-run             xmlwf
-    sparc-rtems4.11-c++filt         sparc-rtems4.11-gcc-4.7.2
-    sparc-rtems4.11-gdb             sparc-rtems4.11-objcopy
-    sparc-rtems4.11-sis
-    $ $HOME/development/rtems/4.11/bin/sparc-rtems4.11-gcc -v
+    $ ls $HOME/development/rtems/4.12
+    bin         include     lib         libexec     share       sparc-rtems4.12
+    $ ls $HOME/development/rtems/4.12/bin
+    sparc-rtems4.12-addr2line       sparc-rtems4.12-cpp
+    sparc-rtems4.12-gcc-ar          sparc-rtems4.12-gprof
+    sparc-rtems4.12-objdump         sparc-rtems4.12-size
+    sparc-rtems4.12-ar              sparc-rtems4.12-elfedit
+    sparc-rtems4.12-gcc-nm          sparc-rtems4.12-ld
+    sparc-rtems4.12-ranlib          sparc-rtems4.12-strings
+    sparc-rtems4.12-as              sparc-rtems4.12-g++
+    sparc-rtems4.12-gcc-ranlib      sparc-rtems4.12-ld.bfd
+    sparc-rtems4.12-readelf         sparc-rtems4.12-strip
+    sparc-rtems4.12-c++             sparc-rtems4.12-gcc
+    sparc-rtems4.12-gcov            sparc-rtems4.12-nm
+    sparc-rtems4.12-run             xmlw
+    sparc-rtems4.12-c++filt         sparc-rtems4.12-gcc-7.1.0
+    sparc-rtems4.12-gdb             sparc-rtems4.12-objcopy
+    sparc-rtems4.12-sis
+    $ $HOME/development/rtems/4.12/bin/sparc-rtems4.12-gcc -v
     Using built-in specs.
-    COLLECT_GCC=/home/chris/development/rtems/4.11/bin/sparc-rtems4.11-gcc
-    COLLECT_LTO_WRAPPER=/usr/home/chris/development/rtems/4.11/bin/../ \
-    libexec/gcc/sparc-rtems4.11/4.7.2/lto-wrapper
-    Target: sparc-rtems4.11                         <1>
-    Configured with: ../gcc-4.7.2/configure         <2>
-    --prefix=/home/chris/development/rtems/4.11
-    --bindir=/home/chris/development/rtems/4.11/bin
-    --exec_prefix=/home/chris/development/rtems/4.11
-    --includedir=/home/chris/development/rtems/4.11/include
-    --libdir=/home/chris/development/rtems/4.11/lib
-    --libexecdir=/home/chris/development/rtems/4.11/libexec
-    --mandir=/home/chris/development/rtems/4.11/share/man
-    --infodir=/home/chris/development/rtems/4.11/share/info
-    --datadir=/home/chris/development/rtems/4.11/share
-    --build=x86_64-freebsd9.1 --host=x86_64-freebsd9.1 --target=sparc-rtems4.11
+    COLLECT_GCC=sparc-rtems4.12-gcc
+    COLLECT_LTO_WRAPPER=$HOME/development/rtems/4.12/bin/../ \
+    libexec/gcc/sparc-rtems4.12/7.1.0/lto-wrapper
+    Target: sparc-rtems4.12                         <1>
+    Configured with: ../gcc-7.1.0/configure         <2>
+    --prefix=$HOME/development/rtems/4.12
+    --bindir=$HOME/development/rtems/4.12/bin
+    --exec_prefix=$HOME/development/rtems/4.12
+    --includedir=$HOME/development/rtems/4.12/include
+    --libdir=$HOME/development/rtems/4.12/lib
+    --libexecdir=$HOME/development/rtems/4.12/libexec
+    --mandir=$HOME/development/rtems/4.12/share/man
+    --infodir=$HOME/development/rtems/4.12/share/info
+    --datadir=$HOME/development/rtems/4.12/share
+    --build=x86_64-freebsd9.1 --host=x86_64-freebsd9.1 --target=sparc-rtems4.12
     --disable-libstdcxx-pch --with-gnu-as --with-gnu-ld --verbose --with-newlib
     --with-system-zlib --disable-nls --without-included-gettext
     --disable-win32-registry --enable-version-specific-runtime-libs --disable-lto
     --enable-threads --enable-plugin --enable-newlib-io-c99-formats
     --enable-newlib-iconv --enable-languages=c,c++
     Thread model: rtems             <3>
-    gcc version 4.7.2 20120920      <4>
-     (RTEMS 4.11 RSB cb12e4875c203f794a5cd4b3de36101ff9a88403)-1 newlib 2.0.0) (GCC)
+    gcc version 7.1.0 20120920      <4>
+     (RTEMS 4.12 RSB cb12e4875c203f794a5cd4b3de36101ff9a88403)-1 newlib 2.5.0) (GCC)
 
 .. topic:: Items
 
@@ -370,54 +370,54 @@ cleaned up.
 The tar files are created with the full build prefix present and if you follow
 the examples given in this documentation the path is absolute. This can cause
 problems if you are installing on a host you do not have super user or
-administrator rights on because the prefix path may references part you do not
+administrator rights on because the prefix path may reference a part you do not
 have write access too and tar will not extract the files. You can use the
 ``--strip-components`` option in tar if your host tar application supports it
 to remove the parts you do not have write access too or you may need to unpack
 the tar file somewhere and copy the file tree from the level you have write
 access from. Embedding the full prefix path in the tar files lets you know what
 the prefix is and is recommended. For example if
-``/home/chris/development/rtems/4.11`` is the prefix used you cannot change
+``$HOME/development/rtems/4.12`` is the prefix used you cannot change
 directory to the root (``/``) and untar the file because the ``/home`` is root
 access only. To install a tar file you have downloaded into your new machine's
-``Downloads`` directory in your home directoty you would enter:
+``Downloads`` directory in your home directory you would enter:
 
 .. code-block:: shell
 
     $ cd /somewhere
     $ tar --strip-components=3 -xjf \
-          $HOME/Downloads/rtems-4.11-sparc-rtems4.11-1.tar.bz2
+          $HOME/Downloads/rtems-4.12-sparc-rtems4.12-1.tar.bz2
 
 A build set tar file is created by adding ``--bset-tar-file`` option to the
 ``sb-set-builder`` command::
 
     $ ../source-builder/sb-set-builder --log=l-sparc.txt \
-             --prefix=$HOME/development/rtems/4.11 \
+             --prefix=$HOME/development/rtems/4.12 \
              --bset-tar-file \     <1>
-             4.11/rtems-sparc
-    Source Builder - Set Builder, v0.2.0
-    Build Set: 4.11/rtems-sparc
+             4.12/rtems-sparc
+    RTEMS Source Builder - Set Builder, 4.12
+    Build Set: 4.12/rtems-sparc
     config: expat-2.1.0-1.cfg
     package: expat-2.1.0-x86_64-freebsd9.1-1
     building: expat-2.1.0-x86_64-freebsd9.1-1
-    config: tools/rtems-binutils-2.22-1.cfg
-    package: sparc-rtems4.11-binutils-2.22-1
-    building: sparc-rtems4.11-binutils-2.22-1
-    config: tools/rtems-gcc-4.7.2-newlib-1.20.0-1.cfg
-    package: sparc-rtems4.11-gcc-4.7.2-newlib-1.20.0-1
-    building: sparc-rtems4.11-gcc-4.7.2-newlib-1.20.0-1
-    config: tools/rtems-gdb-7.5.1-1.cfg
-    package: sparc-rtems4.11-gdb-7.5.1-1
-    building: sparc-rtems4.11-gdb-7.5.1-1
-    installing: rtems-4.11-sparc-rtems4.11-1 -> /home/chris/development/rtems/4.11 <2>
-    installing: rtems-4.11-sparc-rtems4.11-1 -> /home/chris/development/rtems/4.11
-    installing: rtems-4.11-sparc-rtems4.11-1 -> /home/chris/development/rtems/4.11
-    installing: rtems-4.11-sparc-rtems4.11-1 -> /home/chris/development/rtems/4.11
-    tarball: tar/rtems-4.11-sparc-rtems4.11-1.tar.bz2      <3>
+    config: tools/rtems-binutils-2.28-1.cfg
+    package: sparc-rtems4.12-binutils-2.28-1
+    building: sparc-rtems4.12-binutils-2.28-1
+    config: tools/rtems-gcc-7.1.0-newlib-2.5.0-1.cfg
+    package: sparc-rtems4.12-gcc-7.1.0-newlib-2.5.0-1
+    building: sparc-rtems4.12-gcc-7.1.0-newlib-2.5.0-1
+    config: tools/rtems-gdb-7.12-1.cfg
+    package: sparc-rtems4.12-gdb-7.12-1
+    building: sparc-rtems4.12-gdb-7.12-1
+    installing: rtems-4.12-sparc-rtems4.12-1 -> $HOME/development/rtems/4.12 <2>
+    installing: rtems-4.12-sparc-rtems4.12-1 -> $HOME/development/rtems/4.12
+    installing: rtems-4.12-sparc-rtems4.12-1 -> $HOME/development/rtems/4.12
+    installing: rtems-4.12-sparc-rtems4.12-1 -> $HOME/development/rtems/4.12
+    tarball: tar/rtems-4.12-sparc-rtems4.12-1.tar.bz2      <3>
     cleaning: expat-2.1.0-x86_64-freebsd9.1-1
-    cleaning: sparc-rtems4.11-binutils-2.22-1
-    cleaning: sparc-rtems4.11-gcc-4.7.2-newlib-1.20.0-1
-    cleaning: sparc-rtems4.11-gdb-7.5.1-1
+    cleaning: sparc-rtems4.12-binutils-2.28-1
+    cleaning: sparc-rtems4.12-gcc-7.1.0-newlib-2.5.0-1
+    cleaning: sparc-rtems4.12-gdb-7.12-1
     Build Set: Time 0:15:25.92873
 
 .. topic:: Items
@@ -433,11 +433,11 @@ option. This is useful if your prefix is not accessiable, for example when
 building Canadian cross compiled tool sets::
 
     $ ../source-builder/sb-set-builder --log=l-sparc.txt \
-                --prefix=$HOME/development/rtems/4.11 \
+                --prefix=$HOME/development/rtems/4.12 \
                 --bset-tar-file \
                 --no-install \      <1>
-                4.11/rtems-sparc
-    Source Builder - Set Builder, v0.2.0
+                4.12/rtems-sparc
+    RTEMS Source Builder - Set Builder, 4.12
     Build Set: 4.11/rtems-sparc
     config: expat-2.1.0-1.cfg
     package: expat-2.1.0-x86_64-freebsd9.1-1
@@ -445,17 +445,17 @@ building Canadian cross compiled tool sets::
     config: tools/rtems-binutils-2.22-1.cfg
     package: sparc-rtems4.11-binutils-2.22-1
     building: sparc-rtems4.11-binutils-2.22-1
-    config: tools/rtems-gcc-4.7.2-newlib-1.20.0-1.cfg
-    package: sparc-rtems4.11-gcc-4.7.2-newlib-1.20.0-1
-    building: sparc-rtems4.11-gcc-4.7.2-newlib-1.20.0-1
-    config: tools/rtems-gdb-7.5.1-1.cfg
-    package: sparc-rtems4.11-gdb-7.5.1-1
-    building: sparc-rtems4.11-gdb-7.5.1-1
+    config: tools/rtems-gcc-7.1.0-newlib-2.5.0-1.cfg
+    package: sparc-rtems4.11-gcc-7.1.0-newlib-2.5.0-1
+    building: sparc-rtems4.11-gcc-7.1.0-newlib-2.5.0-1
+    config: tools/rtems-gdb-7.12-1.cfg
+    package: sparc-rtems4.11-gdb-7.12-1
+    building: sparc-rtems4.11-gdb-7.12-1
     tarball: tar/rtems-4.11-sparc-rtems4.11-1.tar.bz2    <2>
     cleaning: expat-2.1.0-x86_64-freebsd9.1-1
     cleaning: sparc-rtems4.11-binutils-2.22-1
-    cleaning: sparc-rtems4.11-gcc-4.7.2-newlib-1.20.0-1
-    cleaning: sparc-rtems4.11-gdb-7.5.1-1
+    cleaning: sparc-rtems4.11-gcc-7.1.0-newlib-2.5.0-1
+    cleaning: sparc-rtems4.11-gdb-7.12-1
     Build Set: Time 0:14:11.721274
     $ ls tar
     rtems-4.11-sparc-rtems4.11-1.tar.bz2
@@ -471,34 +471,34 @@ A package tar file can be created by adding the ``--pkg-tar-files`` to the
 build set::
 
     $ ../source-builder/sb-set-builder --log=l-sparc.txt \
-            --prefix=$HOME/development/rtems/4.11 \
+            --prefix=$HOME/development/rtems/4.12 \
             --bset-tar-file \
             --pkg-tar-files \        <1>
-            --no-install 4.11/rtems-sparc
-    Source Builder - Set Builder, v0.2.0
-    Build Set: 4.11/rtems-sparc
+            --no-install 4.12/rtems-sparc
+    RTEMS Source Builder - Set Builder, 4.12
+    Build Set: 4.12/rtems-sparc
     config: expat-2.1.0-1.cfg
     package: expat-2.1.0-x86_64-freebsd9.1-1
     building: expat-2.1.0-x86_64-freebsd9.1-1
-    config: tools/rtems-binutils-2.22-1.cfg
-    package: sparc-rtems4.11-binutils-2.22-1
-    building: sparc-rtems4.11-binutils-2.22-1
-    config: tools/rtems-gcc-4.7.2-newlib-1.20.0-1.cfg
-    package: sparc-rtems4.11-gcc-4.7.2-newlib-1.20.0-1
-    building: sparc-rtems4.11-gcc-4.7.2-newlib-1.20.0-1
-    config: tools/rtems-gdb-7.5.1-1.cfg
-    package: sparc-rtems4.11-gdb-7.5.1-1
-    building: sparc-rtems4.11-gdb-7.5.1-1
-    tarball: tar/rtems-4.11-sparc-rtems4.11-1.tar.bz2
+    config: tools/rtems-binutils-2.28-1.cfg
+    package: sparc-rtems4.11-binutils-2.28-1
+    building: sparc-rtems4.11-binutils-2.28-1
+    config: tools/rtems-gcc-7.1.0-newlib-2.5.0-1.cfg
+    package: sparc-rtems4.11-gcc-7.1.0-newlib-2.5.0-1
+    building: sparc-rtems4.11-gcc-7.1.0-newlib-2.5.0-1
+    config: tools/rtems-gdb-7.12-1.cfg
+    package: sparc-rtems4.11-gdb-7.12-1
+    building: sparc-rtems4.11-gdb-7.12-1
+    tarball: tar/rtems-4.12-sparc-rtems4.12-1.tar.bz2
     cleaning: expat-2.1.0-x86_64-freebsd9.1-1
-    cleaning: sparc-rtems4.11-binutils-2.22-1
-    cleaning: sparc-rtems4.11-gcc-4.7.2-newlib-1.20.0-1
-    cleaning: sparc-rtems4.11-gdb-7.5.1-1
+    cleaning: sparc-rtems4.11-binutils-2.28-1
+    cleaning: sparc-rtems4.11-gcc-7.1.0-newlib-2.5.0-1
+    cleaning: sparc-rtems4.11-gdb-7.12-1
     Build Set: Time 0:14:37.658460
     $ ls tar
-    expat-2.1.0-x86_64-freebsd9.1-1.tar.bz2           sparc-rtems4.11-binutils-2.22-1.tar.bz2
-    sparc-rtems4.11-gdb-7.5.1-1.tar.bz2 <2>           rtems-4.11-sparc-rtems4.11-1.tar.bz2 <3>
-    sparc-rtems4.11-gcc-4.7.2-newlib-1.20.0-1.tar.bz2
+    expat-2.1.0-x86_64-freebsd9.1-1.tar.bz2           sparc-rtems4.12-binutils-2.5-1.tar.bz2
+    sparc-rtems4.12-gdb-7.12-1.tar.bz2 <2>           rtems-4.12-sparc-rtems4.12-1.tar.bz2 <3>
+    sparc-rtems4.12-gcc-7.1.0-newlib-2.5.0-1.tar.bz2
 
 .. topic:: Items
 
