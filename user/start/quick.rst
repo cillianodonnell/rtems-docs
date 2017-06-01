@@ -15,9 +15,9 @@ You need to have your development host set up and ready, the
 :ref:`development-host` covers what you need.
 
 This procedure does a development (unstable) build from Git for a POSIX
-host. You can refer to the specific section that cover the specific part of the
-process in detail if you have an issue. The output from the commands has been
-removed and replaced with ``...``.
+host. You can refer to the specific section that covers the specific part of
+the process in detail if you have an issue. The output from the commands has
+been removed and replaced with ``...``.
 
 Create a workspace, download the RTEMS Source Builder (RSB) and build a tool
 chain (See :ref:`rtems-tools-chain`):
@@ -34,7 +34,7 @@ chain (See :ref:`rtems-tools-chain`):
     ...
   $ cd rtems
   $ ../source-builder/sb-set-builder \
-      --prefix=/usr/home/chris/development/rtems/4.12 4.12/rtems-sparc
+      --prefix=$HOME/development/rtems/4.12 4.12/rtems-sparc
     ...
 
 Build the RTEMS Kernel (See :ref:`rtems-kernel`) by cloning the repository,
@@ -57,9 +57,10 @@ kernel:
   $ cd ..
   $ mkdir erc32
   $ cd erc32
-  $ $HOME/development/rtems/kernel/rtems/configure --prefix=$HOME/development/rtems/4.12 \
-                     --target=sparc-rtems4.12 --enable-rtemsbsp=erc32 --enable-posix \
-		     --disable-networking
+  $ $HOME/development/rtems/kernel/rtems/configure \
+    --prefix=$HOME/development/rtems/4.12 \
+    --target=sparc-rtems4.12 --enable-rtemsbsp=erc32 --enable-posix \
+    --disable-networking
     ...
   $ make -j 8
     ...
